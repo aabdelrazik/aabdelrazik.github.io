@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ahmed H. Abdelrazik — Computational Neuroscience</title>
+<meta name="description" content="Ahmed H. Abdelrazik — PhD researcher in Computational Neuroscience at the Max Planck Institute / University of Tübingen. Sequential decision-making, neural dynamics, and computational psychiatry." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FBFAF7;
+    --ink:#1A1A1A;
+    --ink-soft:#54514B;
+    --rule:#E2DED5;
+    --rule-soft:#EFECE4;
+    --accent:#2D5FA8;
+    --accent-soft:#7C9BC8;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:88px 0 56px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:22px;
+  }
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-size:clamp(2.4rem,6vw,3.6rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  .lede{
+    font-family:'Spectral',serif;
+    font-weight:300;
+    font-size:clamp(1.15rem,2.6vw,1.4rem);
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:60ch;
+  }
+  .lede em{font-style:italic;color:var(--ink);}
+
+  /* ---------- accumulation signature ---------- */
+  .accumulator{margin:46px 0 8px;}
+  .accumulator svg{width:100%;height:88px;display:block;overflow:visible;}
+  .accumulator .thresh{stroke:var(--accent-soft);stroke-width:1;stroke-dasharray:3 4;}
+  .accumulator .axis{stroke:var(--rule);stroke-width:1;}
+  .accumulator .evi{
+    fill:none;stroke:var(--accent);stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;
+  }
+  .accumulator .dot{fill:var(--accent);}
+  .accumulator .cap{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    fill:var(--ink-soft);letter-spacing:0.04em;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .accumulator .evi{
+      stroke-dasharray:480;stroke-dashoffset:480;
+      animation:draw 2.4s cubic-bezier(.4,.0,.2,1) .25s forwards;
+    }
+    .accumulator .dot{opacity:0;animation:pop .4s ease .25s 2.55s forwards;}
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes pop{to{opacity:1;}}
+
+  /* ---------- nav links inline ---------- */
+  .links{
+    display:flex;flex-wrap:wrap;gap:8px 22px;
+    margin-top:34px;
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+  }
+  .links a{
+    color:var(--ink);text-decoration:none;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:2px;transition:border-color .18s,color .18s;
+  }
+  .links a:hover{color:var(--accent);border-color:var(--accent);}
+
+  /* ---------- sections ---------- */
+  section{padding:38px 0;border-top:1px solid var(--rule);}
+  .sec-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:26px;
+  }
+  h2{
+    font-family:'Spectral',serif;font-weight:500;
+    font-size:1.7rem;letter-spacing:-0.01em;margin-bottom:14px;
+  }
+  p{margin-bottom:16px;color:var(--ink-soft);}
+  p strong{color:var(--ink);font-weight:600;}
+  p:last-child{margin-bottom:0;}
+
+  /* ---------- research items ---------- */
+  .item{
+    display:grid;grid-template-columns:104px 1fr;gap:22px;
+    padding:20px 0;border-top:1px solid var(--rule-soft);
+  }
+  .item:first-of-type{border-top:none;}
+  .item .when{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:var(--ink-soft);padding-top:3px;line-height:1.5;
+  }
+  .item h3{
+    font-family:'Spectral',serif;font-weight:500;font-size:1.12rem;
+    line-height:1.3;margin-bottom:5px;
+  }
+  .item .where{
+    font-size:14px;color:var(--ink-soft);margin-bottom:8px;
+  }
+  .item p{font-size:15.5px;margin-bottom:0;}
+  .item a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);}
+  .item a:hover{border-color:var(--accent);}
+
+  /* ---------- two-col lists ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 34px;}
+  .cols div{
+    padding:9px 0;border-top:1px solid var(--rule-soft);
+    font-size:15px;color:var(--ink-soft);
+  }
+  .cols .k{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--ink);display:block;margin-bottom:1px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:46px 0 70px;border-top:1px solid var(--rule);
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);}
+  footer a:hover{color:var(--accent);border-color:var(--accent);}
+  footer .row{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:14px;}
+
+  @media (max-width:560px){
+    .item{grid-template-columns:1fr;gap:4px;}
+    .item .when{padding-top:0;}
+    .cols{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Computational Neuroscience · Tübingen</div>
+    <h1>Ahmed&nbsp;H.&nbsp;Abdelrazik</h1>
+    <p class="lede">
+      PhD researcher studying how brains <em>gather evidence</em>, <em>accumulate</em> it
+      over time, and decide <em>when to stop</em> — from sequential decision-making in
+      obsessive–compulsive disorder to the dynamics of large-scale neural activity.
+    </p>
+
+    <div class="accumulator" aria-hidden="true">
+      <svg viewBox="0 0 600 88" preserveAspectRatio="none" role="img">
+        <!-- baseline axis -->
+        <line class="axis" x1="0" y1="80" x2="600" y2="80" />
+        <!-- decision threshold -->
+        <line class="thresh" x1="0" y1="20" x2="600" y2="20" />
+        <text class="cap" x="2" y="14">decision threshold</text>
+        <!-- noisy accumulating evidence path -->
+        <path class="evi" d="M0,72 L40,68 L80,71 L120,60 L160,63 L200,52 L240,56 L280,46 L320,49 L360,38 L400,41 L440,31 L480,34 L520,24 L555,20" />
+        <circle class="dot" cx="555" cy="20" r="4" />
+        <text class="cap" x="498" y="62">commit →</text>
+      </svg>
+    </div>
+
+    <nav class="links">
+      <a href="#research">Research</a>
+      <a href="#background">Background</a>
+      <a href="#publications">Publications</a>
+      <a href="mailto:ahamdy.e21@gmail.com">Email</a>
+      <a href="https://www.kyb.tuebingen.mpg.de/person/138654" target="_blank" rel="noopener">Lab page</a>
+      <a href="cv.pdf">CV (PDF)</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <div class="sec-label">01 — Now</div>
+    <p>
+      I am a PhD student in <strong>Computational Neuroscience</strong> at the University of
+      Tübingen and the Max Planck Institute for Biological Cybernetics, supervised by
+      <strong>Prof. Peter Dayan</strong>. I came to neuroscience from
+      <strong>aerospace engineering and control theory</strong>, and my work lives on the
+      bridge between the two: I use ideas from <strong>control theory and dynamical
+      systems</strong> to understand how people make decisions, and I look for
+      <strong>neuroscience-inspired algorithms</strong> that could, in turn, help machines
+      act intelligently in the same uncertain world.
+    </p>
+    <p>
+      My first project models <strong>sequential decision-making in OCD</strong> as a Partially
+      Observable Markov Decision Process, asking what makes evidence-gathering tip into
+      indecision. Next, I am turning to <strong>hierarchical decision-making and meta-control</strong>
+      — how people decompose complex tasks across levels and timescales — drawing on the theory
+      of layered control architectures from engineering.
+    </p>
+  </section>
+
+  <section id="research">
+    <div class="sec-label">02 — Research</div>
+
+    <div class="item">
+      <div class="when">2024 — 2025<br>MSc thesis</div>
+      <div>
+        <h3>Information gathering in OCD during sequential decision-making</h3>
+        <div class="where">Supervised by Prof. Peter Dayan · University of Tübingen</div>
+        <p>
+          A POMDP account of indecisiveness in obsessive–compulsive disorder. I model the
+          ideal observer's stopping policy, then add interpretable deviations — recency,
+          urgency, and risk — and fit them to behaviour to locate the mechanism behind
+          excessive sampling.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">2024<br>Research asst.</div>
+      <div>
+        <h3>Stability of neural fields via contraction theory</h3>
+        <div class="where">Giese Lab for Computational Sensomotorics · Tübingen</div>
+        <p>
+          Contraction analysis of continuum neural-field models, and stability conditions for
+          interconnected recurrent neural networks in Hilbert spaces.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">2022 — 2023<br>Research asst.</div>
+      <div>
+        <h3>Large-scale brain dynamics with the Kuramoto model</h3>
+        <div class="where">Brain Dynamics Lab · Dynamics &amp; Network Control Theory</div>
+        <p>
+          An open-source package for large-scale Kuramoto networks, relating structural to
+          functional connectivity.
+          <a href="https://kuramotonetworkspackage.readthedocs.io" target="_blank" rel="noopener">Documentation →</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">2021<br>Intern</div>
+      <div>
+        <h3>Stability analysis of the Wilson–Cowan model</h3>
+        <div class="where">Brain Dynamics Lab · University of Manchester</div>
+        <p>
+          Linked model parameters to oscillatory dynamics through bifurcation analysis of
+          coupled neural populations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="sec-label">03 — Publications &amp; Theses</div>
+
+    <div class="item">
+      <div class="when">2023<br>Conference</div>
+      <div>
+        <h3>Beyond global synchrony: equivalence between Kuramoto oscillators and the Wilson–Cowan model for large-scale brain networks</h3>
+        <div class="where">18th Int. Symposium on Medical Information Processing &amp; Analysis (SIPAIM)</div>
+        <p><a href="https://doi.org/10.1117/12.2670120" target="_blank" rel="noopener">doi.org/10.1117/12.2670120 →</a></p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="when">2022<br>BSc thesis</div>
+      <div>
+        <h3>Dynamical analysis and network implementation of the Kuramoto model to match EEG data from schizophrenia</h3>
+        <div class="where">Zewail City University of Science and Technology</div>
+        <p>
+          Time-delayed Kuramoto networks under rhythmic stimulation; structural-to-functional
+          connectivity and bifurcation dynamics of coupled Wilson–Cowan populations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="sec-label">04 — Background</div>
+    <div class="cols">
+      <div><span class="k">PhD · 2025–</span>Computational Neuroscience, University of Tübingen</div>
+      <div><span class="k">MSc · 2023–25</span>Computational Neuroscience, Tübingen — 3.7/4.0</div>
+      <div><span class="k">BSc · 2017–22</span>Aerospace Engineering, Zewail City — 3.55/4.0</div>
+      <div><span class="k">Scholarship</span>IMPRS 5-year MSc/PhD fellowship</div>
+      <div><span class="k">Summer school</span>Kavli Inst. — Math. Methods in Comp. Neuro (2025)</div>
+      <div><span class="k">Summer school</span>LACONEU, Chile — ICTP-funded (2023)</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-label">05 — Tools</div>
+    <div class="cols">
+      <div><span class="k">Languages</span>Python, C/C++, MATLAB</div>
+      <div><span class="k">ML &amp; data</span>PyTorch, TensorFlow, scikit-learn, NumPy, Pandas</div>
+      <div><span class="k">Methods</span>POMDPs, Bayesian inference, dynamical systems, control theory</div>
+      <div><span class="k">Spoken</span>Arabic (native), English (fluent), German (intermediate)</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <a href="mailto:ahamdy.e21@gmail.com">ahamdy.e21@gmail.com</a>
+      <a href="https://www.kyb.tuebingen.mpg.de/person/138654" target="_blank" rel="noopener">MPI Tübingen</a>
+      <a href="cv.pdf">CV (PDF)</a>
+    </div>
+    <div>© <span id="yr"></span> Ahmed H. Abdelrazik · Tübingen, Germany</div>
+  </footer>
+
+</div>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
