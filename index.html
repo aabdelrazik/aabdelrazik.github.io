@@ -5,111 +5,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ahmed H. Abdelrazik — Computational Neuroscience</title>
 <meta name="description" content="Ahmed H. Abdelrazik — PhD researcher in Computational Neuroscience at the Max Planck Institute / University of Tübingen. Sequential decision-making, neural dynamics, and computational psychiatry." />
+<script>
+  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#FBFAF7;
-    --ink:#1A1A1A;
-    --ink-soft:#54514B;
+    --bg:#14161D;
+    --surface:#1B1E27;
+    --text:#ECEAE4;
+    --text-soft:#9296A8;
+    --lede:#CBCDD8;
+    --rule:#262A35;
+    --rule-soft:#1F222B;
+    --accent:#6C8CFF;
+    --accent-soft:#35406B;
+    --warn:#F08BA0;
+    --warn-soft:#5B3540;
+    --maxw:800px;
+  }
+  :root[data-theme="light"]{
+    --bg:#FBFAF7;
+    --surface:#F1EEE7;
+    --text:#1A1A1A;
+    --text-soft:#54514B;
+    --lede:#3F3C36;
     --rule:#E2DED5;
     --rule-soft:#EFECE4;
     --accent:#2D5FA8;
     --accent-soft:#7C9BC8;
-    --maxw:760px;
+    --warn:#B23A5B;
+    --warn-soft:#D9A0AD;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--paper);
-    color:var(--ink);
+    background:var(--bg);
+    color:var(--text);
     font-family:'Inter',system-ui,sans-serif;
     font-size:17px;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
+    transition:background .2s,color .2s;
   }
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 
+  /* ---------- top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--rule);
+  }
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;flex-wrap:wrap;gap:10px 24px;
+  }
+  .topbar .who{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    letter-spacing:0.04em;color:var(--text-soft);
+  }
+  .topbar nav{display:flex;flex-wrap:wrap;align-items:center;gap:20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+  .topbar nav a{color:var(--text-soft);text-decoration:none;transition:color .15s;}
+  .topbar nav a:hover{color:var(--accent);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:6px;
+    background:transparent;border:none;padding:0;margin:0;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--text-soft);cursor:pointer;transition:color .15s;
+  }
+  .theme-toggle:hover,.theme-toggle:focus-visible{color:var(--accent);}
+  .theme-toggle svg{width:14px;height:14px;display:block;}
+
   /* ---------- hero ---------- */
-  header.hero{padding:88px 0 56px;}
+  header.hero{padding:56px 0 40px;}
+  .hero-grid{display:grid;grid-template-columns:150px 1fr;gap:36px;align-items:center;}
+  .portrait{
+    width:150px;height:150px;border-radius:50%;
+    background:linear-gradient(155deg,var(--surface),var(--accent-soft));
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--rule);overflow:hidden;flex-shrink:0;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;}
+  .portrait svg{width:60px;height:60px;stroke:var(--text-soft);}
+  .idcard{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
     font-size:12.5px;
     letter-spacing:0.14em;
     text-transform:uppercase;
     color:var(--accent);
-    margin-bottom:22px;
   }
   h1{
     font-family:'Spectral',serif;
     font-weight:500;
-    font-size:clamp(2.4rem,6vw,3.6rem);
-    line-height:1.04;
+    font-size:clamp(1.9rem,4.4vw,2.5rem);
+    line-height:1.08;
     letter-spacing:-0.01em;
-    margin-bottom:20px;
   }
+  .social{display:flex;flex-wrap:wrap;gap:10px;}
+  .social a{
+    display:flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--rule);color:var(--text-soft);text-decoration:none;
+    transition:border-color .15s,color .15s;
+  }
+  .social a:hover{border-color:var(--accent);color:var(--accent);}
+  .social a svg{width:16px;height:16px;display:block;}
+
   .lede{
     font-family:'Spectral',serif;
     font-weight:300;
-    font-size:clamp(1.15rem,2.6vw,1.4rem);
-    line-height:1.5;
-    color:var(--ink-soft);
-    max-width:60ch;
+    font-size:clamp(1.1rem,2.4vw,1.3rem);
+    line-height:1.55;
+    color:var(--lede);
+    max-width:62ch;
+    margin-top:32px;
   }
-  .lede em{font-style:italic;color:var(--ink);}
+  .lede em{font-style:italic;color:var(--text);}
 
   /* ---------- accumulation signature ---------- */
-  .accumulator{margin:46px 0 8px;}
-  .accumulator svg{width:100%;height:88px;display:block;overflow:visible;}
-  .accumulator .thresh{stroke:var(--accent-soft);stroke-width:1;stroke-dasharray:3 4;}
-  .accumulator .axis{stroke:var(--rule);stroke-width:1;}
-  .accumulator .evi{
-    fill:none;stroke:var(--accent);stroke-width:2;
-    stroke-linecap:round;stroke-linejoin:round;
+  .accumulator{margin:38px 0 0;}
+  .accumulator-cap{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px;
   }
-  .accumulator .dot{fill:var(--accent);}
-  .accumulator .cap{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;
-    fill:var(--ink-soft);letter-spacing:0.04em;
+  .demo-question{
+    font-family:'Spectral',serif;font-weight:300;font-style:italic;
+    font-size:1.02rem;line-height:1.5;color:var(--text-soft);
+    max-width:60ch;margin-bottom:20px;
   }
-  @media (prefers-reduced-motion:no-preference){
-    .accumulator .evi{
-      stroke-dasharray:480;stroke-dashoffset:480;
-      animation:draw 2.4s cubic-bezier(.4,.0,.2,1) .25s forwards;
-    }
-    .accumulator .dot{opacity:0;animation:pop .4s ease .25s 2.55s forwards;}
-  }
-  @keyframes draw{to{stroke-dashoffset:0;}}
-  @keyframes pop{to{opacity:1;}}
+  .demo-question strong{font-style:normal;color:var(--text);font-weight:500;}
 
-  /* ---------- nav links inline ---------- */
-  .links{
-    display:flex;flex-wrap:wrap;gap:8px 22px;
-    margin-top:34px;
-    font-family:'JetBrains Mono',monospace;font-size:13px;
+  .demo-grid{display:grid;grid-template-columns:1fr 210px;gap:22px;align-items:start;}
+  .canvas-wrap{display:grid;grid-template-columns:20px 1fr;grid-template-rows:1fr 14px;}
+  .canvas-wrap canvas{grid-column:2;grid-row:1;width:100%;height:150px;display:block;border-radius:4px;}
+  .axis-y{
+    grid-column:1;grid-row:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;
+    color:var(--text-soft);
   }
-  .links a{
-    color:var(--ink);text-decoration:none;
-    border-bottom:1px solid var(--rule);
-    padding-bottom:2px;transition:border-color .18s,color .18s;
+  .axis-y .arrow{line-height:1;}
+  .axis-y .label{
+    writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;
   }
-  .links a:hover{color:var(--accent);border-color:var(--accent);}
+  .axis-x{
+    grid-column:2;grid-row:2;text-align:right;padding-top:2px;
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;
+    color:var(--text-soft);
+  }
+
+  .evidence-card{
+    border:1px solid var(--rule);border-radius:8px;padding:16px;
+    height:150px;box-sizing:border-box;
+    display:flex;flex-direction:column;justify-content:center;gap:10px;
+  }
+  .ep-label{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;
+    text-transform:uppercase;color:var(--text-soft);
+  }
+  .ev-trait{
+    display:flex;align-items:baseline;gap:8px;font-size:15px;color:var(--text-soft);
+    font-family:'Spectral',serif;
+  }
+  .ev-trait .sign{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:16px;flex-shrink:0;}
+  .ev-trait.pos{color:var(--text);}
+  .ev-trait.pos .sign{color:var(--accent);}
+  .ev-trait.neg{color:var(--text);}
+  .ev-trait.neg .sign{color:var(--warn);}
+  .ev-trait.pop{animation:cardpop .28s ease;}
+  @keyframes cardpop{0%{transform:scale(.94);opacity:.45;}100%{transform:scale(1);opacity:1;}}
+
+  .demo-status{
+    margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:13px;
+    color:var(--text-soft);min-height:18px;
+  }
+  .demo-status.marry{color:var(--accent);}
+  .demo-status.reject{color:var(--warn);}
+
+  .demo-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .demo-controls button{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    padding:8px 16px;border-radius:20px;border:1px solid var(--rule);
+    background:transparent;color:var(--text);cursor:pointer;
+    transition:border-color .15s,color .15s;
+  }
+  .demo-controls button:hover,.demo-controls button:focus-visible{border-color:var(--accent);color:var(--accent);}
+  .demo-controls button.walk:hover,.demo-controls button.walk:focus-visible{border-color:var(--warn);color:var(--warn);}
+  .demo-controls button.replay{display:none;}
+  .demo-controls[data-state="ended"] .live-btn{display:none;}
+  .demo-controls[data-state="ended"] .replay{display:inline-block;}
+
+  .demo-note{
+    margin-top:12px;font-family:'Spectral',serif;font-style:italic;font-weight:300;
+    font-size:13.5px;color:var(--text-soft);
+  }
+
+  @media (max-width:640px){
+    .demo-grid{grid-template-columns:1fr;}
+    .evidence-card{height:auto;}
+  }
 
   /* ---------- sections ---------- */
   section{padding:38px 0;border-top:1px solid var(--rule);}
   .sec-label{
     font-family:'JetBrains Mono',monospace;
     font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
-    color:var(--ink-soft);margin-bottom:26px;
+    color:var(--accent);margin-bottom:26px;
   }
   h2{
     font-family:'Spectral',serif;font-weight:500;
     font-size:1.7rem;letter-spacing:-0.01em;margin-bottom:14px;
   }
-  p{margin-bottom:16px;color:var(--ink-soft);}
-  p strong{color:var(--ink);font-weight:600;}
+  p{margin-bottom:16px;color:var(--text-soft);}
+  p strong{color:var(--text);font-weight:600;}
   p:last-child{margin-bottom:0;}
 
   /* ---------- research items ---------- */
@@ -120,14 +230,14 @@
   .item:first-of-type{border-top:none;}
   .item .when{
     font-family:'JetBrains Mono',monospace;font-size:12px;
-    color:var(--ink-soft);padding-top:3px;line-height:1.5;
+    color:var(--text-soft);padding-top:3px;line-height:1.5;
   }
   .item h3{
     font-family:'Spectral',serif;font-weight:500;font-size:1.12rem;
     line-height:1.3;margin-bottom:5px;
   }
   .item .where{
-    font-size:14px;color:var(--ink-soft);margin-bottom:8px;
+    font-size:14px;color:var(--text-soft);margin-bottom:8px;
   }
   .item p{font-size:15.5px;margin-bottom:0;}
   .item a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft);}
@@ -137,67 +247,127 @@
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 34px;}
   .cols div{
     padding:9px 0;border-top:1px solid var(--rule-soft);
-    font-size:15px;color:var(--ink-soft);
+    font-size:15px;color:var(--text-soft);
   }
   .cols .k{
     font-family:'JetBrains Mono',monospace;font-size:11.5px;
     text-transform:uppercase;letter-spacing:0.06em;
-    color:var(--ink);display:block;margin-bottom:1px;
+    color:var(--text);display:block;margin-bottom:1px;
   }
 
   /* ---------- footer ---------- */
   footer{
     padding:46px 0 70px;border-top:1px solid var(--rule);
     font-family:'JetBrains Mono',monospace;font-size:12.5px;
-    color:var(--ink-soft);
+    color:var(--text-soft);
   }
-  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);}
+  footer a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--rule);}
   footer a:hover{color:var(--accent);border-color:var(--accent);}
   footer .row{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:14px;}
 
   @media (max-width:560px){
+    .hero-grid{grid-template-columns:1fr;text-align:left;}
+    .portrait{width:112px;height:112px;}
     .item{grid-template-columns:1fr;gap:4px;}
     .item .when{padding-top:0;}
     .cols{grid-template-columns:1fr;}
+    .topbar .wrap{padding:16px 20px;}
   }
 </style>
 </head>
 <body>
 
+<div class="topbar">
+  <div class="wrap">
+    <div class="who">Ahmed H. Abdelrazik</div>
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#background">Background</a>
+      <a href="#publications">Publications</a>
+      <a href="blog/">Blog</a>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <span id="themeLabel">Light mode</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
 <div class="wrap">
 
   <header class="hero">
-    <div class="eyebrow">Computational Neuroscience · Tübingen</div>
-    <h1>Ahmed&nbsp;H.&nbsp;Abdelrazik</h1>
+    <div class="hero-grid">
+      <div class="portrait">
+        <img src="photo.jpg" alt="Ahmed H. Abdelrazik" />
+      </div>
+      <div class="idcard">
+        <div class="eyebrow">Computational Neuroscience · Tübingen</div>
+        <h1>Ahmed&nbsp;H.&nbsp;Abdelrazik</h1>
+        <div class="social">
+          <a href="mailto:ahamdy.e21@gmail.com" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/aabdelrazik/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/aabdelrazik" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+          <a href="https://scholar.google.com/citations?user=HEbg4dkAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.51 14.978 9.5 12 9.5c-2.977 0-5.548 2.01-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </a>
+          <a href="https://www.kyb.tuebingen.mpg.de/person/138654" target="_blank" rel="noopener" aria-label="Lab page" title="Lab page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L4 18a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-5-9.5V2"/><line x1="8" y1="2" x2="16" y2="2"/></svg>
+          </a>
+          <a href="cv.pdf" aria-label="CV (PDF)" title="CV (PDF)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <p class="lede">
       PhD researcher studying how brains <em>gather evidence</em>, <em>accumulate</em> it
       over time, and decide <em>when to stop</em>, from sequential decision-making in
       obsessive-compulsive disorder to the dynamics of large-scale neural activity.
     </p>
 
-    <div class="accumulator" aria-hidden="true">
-      <svg viewBox="0 0 600 88" preserveAspectRatio="none" role="img">
-        <!-- baseline axis -->
-        <line class="axis" x1="0" y1="80" x2="600" y2="80" />
-        <!-- decision threshold -->
-        <line class="thresh" x1="0" y1="20" x2="600" y2="20" />
-        <text class="cap" x="2" y="14">decision threshold</text>
-        <!-- noisy accumulating evidence path -->
-        <path class="evi" d="M0,72 L40,68 L80,71 L120,60 L160,63 L200,52 L240,56 L280,46 L320,49 L360,38 L400,41 L440,31 L480,34 L520,24 L555,20" />
-        <circle class="dot" cx="555" cy="20" r="4" />
-        <text class="cap" x="498" y="62">commit →</text>
-      </svg>
-    </div>
+    <div class="accumulator">
+      <div class="accumulator-cap">When to decide to decide?</div>
+      <p class="demo-question">
+        <strong>Shall I marry this person?</strong> Each trait nudges the evidence up (propose)
+        or down (escape), and the dashed boundaries curve inward over time, standing in for
+        the mounting cost of gathering more evidence: time, effort, another date's bill.
+      </p>
 
-    <nav class="links">
-      <a href="#research">Research</a>
-      <a href="#background">Background</a>
-      <a href="#publications">Publications</a>
-      <a href="mailto:ahamdy.e21@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/aabdelrazik/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.kyb.tuebingen.mpg.de/person/138654" target="_blank" rel="noopener">Lab page</a>
-      <a href="cv.pdf">CV (PDF)</a>
-    </nav>
+      <div class="demo-grid">
+        <div class="canvas-wrap">
+          <div class="axis-y">
+            <span class="arrow">↑</span>
+            <span class="label">belief</span>
+            <span class="arrow">↓</span>
+          </div>
+          <canvas id="accCanvas" height="150" aria-hidden="true"></canvas>
+          <div class="axis-x">time →</div>
+        </div>
+        <div class="evidence-card">
+          <div class="ep-label">Evidence</div>
+          <div class="ev-trait" id="evTrait">No evidence yet.</div>
+        </div>
+      </div>
+
+      <div class="demo-status" id="demoStatus">Collect evidence, or decide now.</div>
+
+      <div class="demo-controls" id="demoControls" data-state="active">
+        <button type="button" id="btnCollect" class="live-btn">Collect new evidence</button>
+        <button type="button" id="btnMarry" class="live-btn">Propose</button>
+        <button type="button" id="btnWalk" class="live-btn walk">Escape</button>
+        <button type="button" id="btnReplay" class="replay">↻ meet someone new</button>
+      </div>
+      <p class="demo-note">Boundaries collapse with time, and evidence leaks too, so early impressions fade.</p>
+    </div>
   </header>
 
   <section id="about">
@@ -327,6 +497,8 @@
     <div class="row">
       <a href="mailto:ahamdy.e21@gmail.com">ahamdy.e21@gmail.com</a>
       <a href="https://www.linkedin.com/in/aabdelrazik/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/aabdelrazik" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=HEbg4dkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
       <a href="https://www.kyb.tuebingen.mpg.de/person/138654" target="_blank" rel="noopener">MPI Tübingen</a>
       <a href="cv.pdf">CV (PDF)</a>
     </div>
@@ -336,5 +508,277 @@
 </div>
 
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function apply(theme){
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+      icon.innerHTML = MOON;
+      label.textContent = 'Dark mode';
+      btn.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+      root.removeAttribute('data-theme');
+      icon.innerHTML = SUN;
+      label.textContent = 'Light mode';
+      btn.setAttribute('aria-label', 'Switch to light mode');
+    }
+  }
+
+  apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    window.dispatchEvent(new Event('themechange'));
+  });
+})();
+</script>
+<script>
+(function(){
+  var canvas = document.getElementById('accCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var evTraitEl = document.getElementById('evTrait');
+  var statusEl = document.getElementById('demoStatus');
+  var controlsEl = document.getElementById('demoControls');
+  var btnCollect = document.getElementById('btnCollect');
+  var btnMarry = document.getElementById('btnMarry');
+  var btnWalk = document.getElementById('btnWalk');
+  var btnReplay = document.getElementById('btnReplay');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var style = getComputedStyle(document.documentElement);
+  var COLOR_RULE = style.getPropertyValue('--rule').trim();
+  var COLOR_ACCENT = style.getPropertyValue('--accent').trim();
+  var COLOR_ACCENT_SOFT = style.getPropertyValue('--accent-soft').trim();
+  var COLOR_WARN = style.getPropertyValue('--warn').trim();
+  var COLOR_WARN_SOFT = style.getPropertyValue('--warn-soft').trim();
+  var COLOR_TEXT_SOFT = style.getPropertyValue('--text-soft').trim();
+
+  var POS_TRAITS = ['kind','funny','ambitious','trustworthy','curious','generous',
+    'a great listener','calm under pressure','reliable','adventurous','warm',
+    'emotionally mature','supportive','honest','easygoing'];
+  var NEG_TRAITS = ['chronically late','dismissive','secretive','impulsive with money',
+    'holds grudges','never apologizes','flaky','controlling','distant','short-tempered',
+    'judgmental','avoids hard conversations','jealous','stubborn about everything'];
+
+  var W = 600, H = 150;
+  var CENTER_Y = 75, BOUND_INIT = 58, BOUND_MIN = 12, DX = 38;
+  var STEP_MIN = 9, STEP_MAX = 16, NOISE = 3;
+  var LEAK = 0.86;          // per-trait retention — earlier traits fade as new ones arrive
+  var STEP_DURATION = 380;  // ms of motion per adjective collected
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  // Bound stays wide through the early going (a few traits shouldn't force a
+  // verdict), then narrows in a smooth, accelerating curve — a sigmoid, standing
+  // in for the mounting cost (time, effort, money) of continuing to look.
+  var SIG_K = 9, SIG_P0 = 0.62;
+  var SIG_RAW0 = 1 / (1 + Math.exp(SIG_K * (0 - SIG_P0)));
+  var SIG_RAW1 = 1 / (1 + Math.exp(SIG_K * (1 - SIG_P0)));
+  function boundAt(x){
+    var p = Math.max(0, Math.min(1, x / W));
+    var raw = 1 / (1 + Math.exp(SIG_K * (p - SIG_P0)));
+    var norm = (raw - SIG_RAW1) / (SIG_RAW0 - SIG_RAW1);
+    return BOUND_MIN + (BOUND_INIT - BOUND_MIN) * norm;
+  }
+
+  var deck, points, traits, ended, verdict, manualDecision;
+  var animating = false, animStart = 0;
+
+  function shuffledDeck(){
+    var pool = POS_TRAITS.map(function(t){ return {text:t, sign:1}; })
+      .concat(NEG_TRAITS.map(function(t){ return {text:t, sign:-1}; }));
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  function newGame(){
+    deck = shuffledDeck();
+    points = [{x:0, y:CENTER_Y}];
+    traits = [];
+    ended = false; verdict = null; animating = false; manualDecision = false;
+    evTraitEl.textContent = 'No evidence yet.';
+    evTraitEl.className = 'ev-trait';
+    statusEl.textContent = 'Collect evidence, or decide now.';
+    statusEl.className = 'demo-status';
+    controlsEl.dataset.state = 'active';
+    render(1);
+  }
+
+  function showTraitCard(t){
+    evTraitEl.innerHTML = '';
+    var sign = document.createElement('span');
+    sign.className = 'sign';
+    sign.textContent = t.sign > 0 ? '+' : '–';
+    evTraitEl.appendChild(sign);
+    evTraitEl.appendChild(document.createTextNode(t.text));
+    evTraitEl.className = 'ev-trait ' + (t.sign > 0 ? 'pos' : 'neg') + (reduceMotion ? '' : ' pop');
+  }
+
+  function updateStatusLive(){
+    statusEl.textContent = traits.length === 0
+      ? 'Collect evidence, or decide now.'
+      : 'gathering evidence… (' + traits.length + (traits.length === 1 ? ' trait' : ' traits') + ')';
+    statusEl.className = 'demo-status';
+  }
+
+  function updateStatusEnded(){
+    var side = verdict === 'marry' ? 'propose' : 'escape';
+    statusEl.textContent = manualDecision
+      ? 'It seems you hit your subjective decision boundary: ' + side + '.'
+      : '→ decision: ' + side + '.';
+    statusEl.className = 'demo-status ' + verdict;
+  }
+
+  function drawPath(pts, color, width){
+    if (pts.length < 2) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.strokeStyle = color; ctx.lineWidth = width;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.stroke();
+  }
+
+  function render(drawT, pulseAge){
+    if (drawT === undefined) drawT = 1;
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.strokeStyle = COLOR_ACCENT_SOFT; ctx.setLineDash([3, 4]); ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var xi = 0; xi <= W; xi += 6) ctx.lineTo(xi, CENTER_Y - boundAt(xi));
+    ctx.stroke();
+
+    ctx.strokeStyle = COLOR_WARN_SOFT;
+    ctx.beginPath();
+    for (var xj = 0; xj <= W; xj += 6) ctx.lineTo(xj, CENTER_Y + boundAt(xj));
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.font = '10.5px "JetBrains Mono", monospace';
+    ctx.fillStyle = COLOR_ACCENT_SOFT;
+    ctx.fillText('propose', 14, CENTER_Y - BOUND_INIT - 6);
+    ctx.fillStyle = COLOR_WARN_SOFT;
+    ctx.fillText('escape', 14, CENTER_Y + BOUND_INIT + 14);
+
+    var pts;
+    if (points.length > 1) {
+      pts = points.slice(0, points.length - 1);
+      var a = points[points.length - 2], b = points[points.length - 1];
+      var te = easeOutCubic(drawT);
+      pts.push({x:a.x + (b.x - a.x) * te, y:a.y + (b.y - a.y) * te});
+    } else {
+      pts = points.slice();
+    }
+    var pathColor = ended ? (verdict === 'marry' ? COLOR_ACCENT : COLOR_WARN) : COLOR_ACCENT;
+    drawPath(pts, pathColor, 2);
+
+    if (ended && drawT >= 1) {
+      var last = points[points.length - 1];
+      var r = pulseAge === undefined ? 4 : 3 + Math.sin(Math.min(1, pulseAge / 260) * Math.PI) * 3;
+      ctx.beginPath(); ctx.fillStyle = pathColor;
+      ctx.arc(last.x, last.y, Math.max(3, r), 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function startPulse(){
+    var pulseStart = performance.now();
+    function step(now){
+      var age = now - pulseStart;
+      render(1, age);
+      if (age < 500) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function pushPoint(pt){
+    points.push(pt);
+    if (reduceMotion) { render(1); if (ended) render(1, 500); return; }
+    animating = true;
+    animStart = performance.now();
+    (function step(now){
+      var t = Math.min(1, (now - animStart) / STEP_DURATION);
+      render(t);
+      if (t < 1) { requestAnimationFrame(step); return; }
+      animating = false;
+      if (ended) startPulse();
+    })(animStart);
+  }
+
+  function collectEvidence(){
+    if (ended || animating || deck.length === 0) return;
+    var t = deck.shift();
+    var last = points[points.length - 1];
+    var mag = STEP_MIN + Math.random() * (STEP_MAX - STEP_MIN);
+    var x = last.x + DX;
+    var y = CENTER_Y + (last.y - CENTER_Y) * LEAK - t.sign * mag + (Math.random() * 2 - 1) * NOISE;
+    var bound = boundAt(x);
+    var v = null;
+
+    if (y <= CENTER_Y - bound) { y = CENTER_Y - bound; v = 'marry'; }
+    else if (y >= CENTER_Y + bound) { y = CENTER_Y + bound; v = 'reject'; }
+    else if (deck.length === 0) { v = y < CENTER_Y ? 'marry' : 'reject'; y = v === 'marry' ? CENTER_Y - bound : CENTER_Y + bound; }
+
+    traits.push(t);
+    showTraitCard(t);
+    pushPoint({x:x, y:y});
+
+    if (v) { ended = true; verdict = v; controlsEl.dataset.state = 'ended'; updateStatusEnded(); }
+    else { updateStatusLive(); }
+  }
+
+  function decideNow(v){
+    if (ended || animating) return;
+    manualDecision = true;
+    ended = true; verdict = v;
+    controlsEl.dataset.state = 'ended';
+    updateStatusEnded();
+    if (reduceMotion) { render(1, 500); } else { startPulse(); }
+  }
+
+  btnCollect.addEventListener('click', collectEvidence);
+  btnMarry.addEventListener('click', function(){ decideNow('marry'); });
+  btnWalk.addEventListener('click', function(){ decideNow('reject'); });
+  btnReplay.addEventListener('click', newGame);
+
+  function resize(){
+    var rect = canvas.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    W = rect.width;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    newGame();
+  }
+  var resizeT;
+  window.addEventListener('resize', function(){ clearTimeout(resizeT); resizeT = setTimeout(resize, 200); });
+
+  window.addEventListener('themechange', function(){
+    style = getComputedStyle(document.documentElement);
+    COLOR_RULE = style.getPropertyValue('--rule').trim();
+    COLOR_ACCENT = style.getPropertyValue('--accent').trim();
+    COLOR_ACCENT_SOFT = style.getPropertyValue('--accent-soft').trim();
+    COLOR_WARN = style.getPropertyValue('--warn').trim();
+    COLOR_WARN_SOFT = style.getPropertyValue('--warn-soft').trim();
+    COLOR_TEXT_SOFT = style.getPropertyValue('--text-soft').trim();
+    render(1, ended ? 500 : undefined);
+  });
+
+  resize();
+})();
+</script>
 </body>
 </html>

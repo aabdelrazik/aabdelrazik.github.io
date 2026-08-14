@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!--
+  ============================================================
+  BLOG POST TEMPLATE — read this before you start
+  ============================================================
+  1. Save a COPY of this file with a new name, e.g.:
+       blog/2026-03-01-information-gathering-in-ocd.html
+     (date-first names keep them sorted nicely in the folder.)
+
+  2. Edit the three lines below: <title>, the description
+     meta tag, and nothing else in <head> needs to change.
+
+  3. Scroll down to the big dashed "REMOVE BEFORE PUBLISHING"
+     box on the page itself — it explains the rest and is
+     visible in the browser so you can't miss it.
+
+  4. When the post is ready, add one line linking to it from
+     blog/index.html (see step 5 in the on-page box below).
+  ============================================================
+-->
+
+<title>Your Post Title Here — Ahmed H. Abdelrazik</title>
+<meta name="description" content="One-sentence summary of the post for search engines and link previews." />
+<script>
+  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#14161D;
+    --text:#ECEAE4;
+    --text-soft:#9296A8;
+    --rule:#262A35;
+    --accent:#6C8CFF;
+    --warn:#F08BA0;
+    --maxw:720px;
+  }
+  :root[data-theme="light"]{
+    --bg:#FBFAF7;
+    --text:#1A1A1A;
+    --text-soft:#54514B;
+    --rule:#E2DED5;
+    --accent:#2D5FA8;
+    --warn:#B23A5B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .2s,color .2s;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .topbar{border-bottom:1px solid var(--rule);}
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;flex-wrap:wrap;gap:10px 24px;
+  }
+  .topbar .who{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    letter-spacing:0.04em;color:var(--text-soft);text-decoration:none;
+  }
+  .topbar nav{display:flex;align-items:center;gap:20px;}
+  .topbar nav a{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--text-soft);text-decoration:none;
+  }
+  .topbar nav a:hover{color:var(--accent);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:6px;
+    background:transparent;border:none;padding:0;margin:0;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--text-soft);cursor:pointer;transition:color .15s;
+  }
+  .theme-toggle:hover,.theme-toggle:focus-visible{color:var(--accent);}
+  .theme-toggle svg{width:14px;height:14px;display:block;}
+
+  .howto{
+    margin:40px 0;padding:20px 22px;border:1px dashed var(--warn);border-radius:8px;
+  }
+  .howto .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;
+    text-transform:uppercase;color:var(--warn);margin-bottom:12px;
+  }
+  .howto ol{margin:0 0 0 18px;color:var(--text-soft);font-size:14.5px;line-height:1.7;}
+  .howto li{margin-bottom:6px;}
+  .howto code{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);
+    background:var(--rule);padding:1px 5px;border-radius:3px;
+  }
+
+  main{padding:56px 0 80px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:18px;
+  }
+  .meta{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-soft);
+    margin-bottom:28px;
+  }
+  h1{
+    font-family:'Spectral',serif;font-weight:500;
+    font-size:clamp(1.9rem,4.6vw,2.6rem);line-height:1.12;margin-bottom:8px;
+  }
+  h2{
+    font-family:'Spectral',serif;font-weight:500;font-size:1.4rem;
+    margin:40px 0 14px;
+  }
+  article p{
+    color:var(--text-soft);font-size:16.5px;line-height:1.75;margin-bottom:18px;
+  }
+  article p strong{color:var(--text);font-weight:600;}
+  article p em{color:var(--text);font-style:italic;}
+  article a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);}
+  article ul{margin:0 0 18px 20px;color:var(--text-soft);font-size:16.5px;line-height:1.75;}
+  article li{margin-bottom:6px;}
+  blockquote{
+    margin:24px 0;padding-left:18px;border-left:2px solid var(--accent);
+    color:var(--text-soft);font-family:'Spectral',serif;font-style:italic;font-size:1.05rem;
+  }
+  .back{
+    display:inline-block;margin-top:48px;font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--text-soft);text-decoration:none;
+    border-bottom:1px solid var(--rule);padding-bottom:2px;
+  }
+  .back:hover{color:var(--accent);border-color:var(--accent);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="who" href="../">Ahmed H. Abdelrazik</a>
+    <nav>
+      <a href="./">Blog</a>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <span id="themeLabel">Light mode</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <main>
+
+    <div class="howto">
+      <div class="tag">Remove this box before publishing</div>
+      <ol>
+        <li>Replace the eyebrow, title, date, and article content below with your own.</li>
+        <li>Use the example <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;</code>,
+          and <code>&lt;blockquote&gt;</code> further down as a style guide — copy whichever
+          tags you need, delete the rest.</li>
+        <li>Save this file under a new name inside <code>/blog/</code>, e.g.
+          <code>2026-03-01-my-post-title.html</code>.</li>
+        <li>Open <code>blog/index.html</code> and replace the "Nothing posted yet" section
+          with a link to your new file, styled like the other links on the site
+          (see the <code>.back</code> link near the bottom of this page for an example
+          of the link style, or just use a plain <code>&lt;a href="your-file.html"&gt;</code>).</li>
+        <li>Once you're happy with how it reads, delete this whole <code>.howto</code> box
+          (including the <code>&lt;div class="howto"&gt;…&lt;/div&gt;</code> wrapper) —
+          that's what "publishing" means here, there's no build step.</li>
+      </ol>
+    </div>
+
+    <div class="eyebrow">Category or topic</div>
+    <div class="meta">March 2026 · N-minute read</div>
+    <h1>Your Post Title Here</h1>
+
+    <article>
+      <p>
+        Opening paragraph. This is regular body text — <strong>bold</strong> and
+        <em>italic</em> both work, and so do <a href="https://example.com">links</a>.
+        Keep paragraphs reasonably short; the column is narrow on purpose so long
+        lines don't overwhelm the reader.
+      </p>
+
+      <h2>A subheading</h2>
+      <p>
+        More body text under a subheading. Use <code>&lt;h2&gt;</code> tags to break
+        a longer post into sections — they'll pick up the site's serif heading style
+        automatically.
+      </p>
+
+      <ul>
+        <li>Bullet points look like this</li>
+        <li>Use them for lists, comparisons, or step-by-step points</li>
+        <li>Delete this list if you don't need one</li>
+      </ul>
+
+      <blockquote>
+        A blockquote, for pulling out a quote or an idea you want to set apart from
+        the main text.
+      </blockquote>
+
+      <p>
+        Closing paragraph.
+      </p>
+    </article>
+
+    <a class="back" href="./">← Back to blog</a>
+  </main>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function apply(theme){
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+      icon.innerHTML = MOON;
+      label.textContent = 'Dark mode';
+      btn.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+      root.removeAttribute('data-theme');
+      icon.innerHTML = SUN;
+      label.textContent = 'Light mode';
+      btn.setAttribute('aria-label', 'Switch to light mode');
+    }
+  }
+
+  apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

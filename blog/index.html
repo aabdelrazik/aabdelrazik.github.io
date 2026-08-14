@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Ahmed H. Abdelrazik</title>
+<meta name="description" content="Notes on computational neuroscience, decision-making, and control theory, from Ahmed H. Abdelrazik." />
+<script>
+  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#14161D;
+    --text:#ECEAE4;
+    --text-soft:#9296A8;
+    --rule:#262A35;
+    --accent:#6C8CFF;
+    --maxw:800px;
+  }
+  :root[data-theme="light"]{
+    --bg:#FBFAF7;
+    --text:#1A1A1A;
+    --text-soft:#54514B;
+    --rule:#E2DED5;
+    --accent:#2D5FA8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    transition:background .2s,color .2s;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .topbar{border-bottom:1px solid var(--rule);}
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 28px;flex-wrap:wrap;gap:10px 24px;
+  }
+  .topbar .who{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    letter-spacing:0.04em;color:var(--text-soft);text-decoration:none;
+  }
+  .topbar nav{display:flex;align-items:center;gap:20px;}
+  .topbar nav a{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--text-soft);text-decoration:none;
+  }
+  .topbar nav a:hover{color:var(--accent);}
+  .theme-toggle{
+    display:inline-flex;align-items:center;gap:6px;
+    background:transparent;border:none;padding:0;margin:0;
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;
+    color:var(--text-soft);cursor:pointer;transition:color .15s;
+  }
+  .theme-toggle:hover,.theme-toggle:focus-visible{color:var(--accent);}
+  .theme-toggle svg{width:14px;height:14px;display:block;}
+  main{padding:72px 0;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:20px;
+  }
+  h1{
+    font-family:'Spectral',serif;font-weight:500;
+    font-size:clamp(2rem,5vw,2.8rem);line-height:1.1;margin-bottom:20px;
+  }
+  p{color:var(--text-soft);font-family:'Spectral',serif;font-weight:300;
+    font-size:1.15rem;line-height:1.6;max-width:56ch;}
+  .back{
+    display:inline-block;margin-top:40px;font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--text-soft);text-decoration:none;
+    border-bottom:1px solid var(--rule);padding-bottom:2px;
+  }
+  .back:hover{color:var(--accent);border-color:var(--accent);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="who" href="../">Ahmed H. Abdelrazik</a>
+    <nav>
+      <a href="../">Home</a>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <span id="themeLabel">Light mode</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <main>
+    <div class="eyebrow">Blog</div>
+    <h1>Nothing posted yet.</h1>
+    <p>
+      I'm planning to write here about sequential decision-making, computational
+      psychiatry, and the control-theory ideas that shape my research. Check back soon.
+    </p>
+    <a class="back" href="../">← Back to profile</a>
+  </main>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  var MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  function apply(theme){
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+      icon.innerHTML = MOON;
+      label.textContent = 'Dark mode';
+      btn.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+      root.removeAttribute('data-theme');
+      icon.innerHTML = SUN;
+      label.textContent = 'Light mode';
+      btn.setAttribute('aria-label', 'Switch to light mode');
+    }
+  }
+
+  apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
