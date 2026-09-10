@@ -1,0 +1,9 @@
+# LaTeX build artifacts (cv/cv.pdf is copied to the repo root as cv.pdf)
+cv/*.aux
+cv/*.log
+cv/*.out
+cv/*.fls
+cv/*.fdb_latexmk
+cv/*.synctex.gz
+cv/cv.pdf
+.DS_Store

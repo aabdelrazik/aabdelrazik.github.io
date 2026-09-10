@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Medium Length Professional CV
+% LaTeX Template
+%
+% Build: latexmk -pdf cv.tex   (then copy cv.pdf to the repo root)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan,
+    pdftitle={Ahmed Abdelrazik - CV},
+    pdfauthor={Ahmed H. Abdelrazik},
+}
+\urlstyle{same}
+
+\usepackage[left=0.40in,top=0.3in,right=0.75in,bottom=0.1in]{geometry} % Document margins
+\usepackage{fontawesome}
+\usepackage{times}
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=0pt} % Keep bullet lists compact (fits on two pages)
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+
+\name{Ahmed H. Abdelrazik} % Your name
+\address{\faEnvelope{} \href{mailto:ahmed.abdelrazik@tuebingen.mpg.de}{ahmed.abdelrazik@tuebingen.mpg.de} \\ \faGlobe{} \href{https://aabdelrazik.github.io}{aabdelrazik.github.io} \\ \faGraduationCap{} \href{https://scholar.google.com/citations?user=HEbg4dkAAAAJ}{Google Scholar} \\ ORCID \href{https://orcid.org/0009-0006-6597-8378}{0009-0006-6597-8378}}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+{\bf Eberhard Karls Universität Tübingen \& MPI for Biological Cybernetics, Germany} \hfill {\em Oct. 2025 -- Present}\\
+\textit{Ph.D. in Computational Neuroscience} \hfill {Supervisor: Prof. Peter Dayan}
+
+{\bf Eberhard Karls Universität Tübingen, Germany} \hfill {\em Oct. 2023 -- Sept. 2025} \\
+\textit{M.Sc. in Computational Neuroscience}\hfill {CGPA: 3.7/4.00}
+
+{\bf Zewail City University of Science and Technology, Egypt} \hfill {\em Sept. 2017 -- Jul. 2022} \\
+\textit{B.Sc. in Aerospace Engineering} \hfill {CGPA: 3.55/4.00}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Experience}
+\textbf{Master's Thesis, under the supervision of Prof. Peter Dayan} \hfill \textit{Dec. 2024 -- Oct. 2025} \\
+\textit{Investigating the Spectrum of Information Gathering in OCD during Sequential Decision-Making}
+\begin{itemize}
+    \item Investigated the underlying cognitive mechanisms of indecisiveness in obsessive-compulsive disorder (OCD).
+    \item Modeled decision-making in OCD using the \textbf{Partially Observable Markov Decision Process (POMDP)} to capture the underlying mechanism for indecisiveness.
+    \item Fitted the model to reproduce the empirical data; results reported in a 2026 \textit{bioRxiv} preprint (see Publications).
+\end{itemize}
+
+
+\textbf{Teaching Assistant, Neural Dynamics (Graduate Training Center, Tübingen)} \hfill \textit{Sept. 2024 -- Present}
+\begin{itemize}
+    \item Guided students through tutorials, problem sets, and practical coding exercises.
+    \item Assisted in course delivery and graded assignments.
+\end{itemize}
+
+\textbf{Research Assistant, Giese Lab for Computational Sensomotorics} \hfill \textit{Sept. 2024 -- Dec. 2024} \\
+\textit{Stabilizing Neural Fields: Comparative Analysis of Techniques and Contraction Theory in Hilbert Spaces}
+\begin{itemize}
+    \item Investigated contraction theory for continuum models of neural fields.
+    \item Analyzed stability conditions for interconnected recurrent neural networks (RNNs).
+\end{itemize}
+
+\textbf{Systems Biologist and Protein Engineering Researcher, Proteinea} \hfill \textit{Sept. 2022 -- Jan. 2024}
+\begin{itemize}
+    \item Developed protein thermal stability prediction pipelines using biophysical modeling.
+    \item Designed and led learning programs in biophysics for team members.
+    \item Contributed to rational antibody design projects.
+\end{itemize}
+
+\textbf{Teaching Assistant, Zewail City University of Science and Technology} \hfill \textit{Sept. 2022 -- Jan. 2023}
+\begin{itemize}
+    \item Supported instruction in Systems Biology and Nonlinear Control courses.
+\end{itemize}
+
+\textbf{Research Assistant, Brain Dynamics Lab (Dynamics \& Network Control Theory)} \hfill \textit{Jul. 2022 -- Feb. 2023}
+\begin{itemize}
+    \item Developed an open-source large-scale network package for brain dynamics (Kuramoto model). \\ \url{https://kuramotonetworkspackage.readthedocs.io}
+    \item Modeled large-scale brain activity and analyzed structural vs. functional connectivity.
+\end{itemize}
+
+\textbf{Research Intern, Brain Dynamics Lab, University of Manchester} \hfill \textit{Aug. 2021 -- Nov. 2021}
+\begin{itemize}
+    \item Performed stability analysis for the Wilson--Cowan model.
+    \item Explored links between model parameters and oscillatory dynamics.
+\end{itemize}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS & PROJECTS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Publications and Projects}
+
+{\bf Preprint:} \textit{``Deciding when to decide: how recency, urgency, risk, and bias shape human sequential decision-making -- a case study across the obsessive--compulsive spectrum.''} \\
+\textbf{A. H. Abdelrazik}, P. Dayan. \textit{bioRxiv}, 2026. \url{https://doi.org/10.64898/2026.08.21.746184} \hfill {\em Aug. 2026}
+
+{\bf Conference Paper:} \textit{``Beyond global synchrony: Equivalence between Kuramoto oscillators and Wilson--Cowan model for large-scale brain networks.''} \\
+\textbf{A. H. Abd-Elrazik}, F. A. Torres, M. Otero, C. A. Lea-Carnall, W. El-Deredy. \\
+\textit{Proc. SPIE} 12567, 18th Int. Symposium on Medical Information Processing and Analysis (SIPAIM). \\
+\url{https://doi.org/10.1117/12.2670120} \hfill {\em Mar. 2023}
+
+{\bf Undergraduate Thesis:} \textit{``Dynamical Analysis and Large-scale Network Implementation of the Kuramoto Model to Match EEG Data from Schizophrenic Patients.''} \hfill {\em Nov. 2021 -- Jul. 2022}
+\begin{itemize}
+    \item Implemented large-scale time-delayed Kuramoto networks under rhythmic stimulation.
+    \item Related structural brain networks to functional connectivity using network analysis.
+    \item Analyzed bifurcation dynamics of coupled Wilson--Cowan populations.
+\end{itemize}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	SUMMER SCHOOLS & ADDITIONAL TRAINING
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Summer Schools \& Additional Training}
+
+\textbf{Mathematical Methods in Computational Neuroscience (Kavli Institute, Norway)} \hfill \textit{July 2025}
+\begin{itemize}
+    \item Covered information theory, statistical mechanics, network dynamics, and dimensionality reduction.
+    \item Presented a poster and gave an oral presentation on my research.
+\end{itemize}
+
+\textbf{Latin American Summer School in Computational Neuroscience (LACONEU)} \hfill \textit{Jan. 2023}
+\begin{itemize}
+    \item Fully funded scholarship by the Abdus Salam International Centre for Theoretical Physics (ICTP).
+    \item Participated in lectures and hands-on projects at Universidad de Valparaíso, Chile.
+\end{itemize}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	AWARDS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Achievements and Awards}
+\begin{itemize}
+    \item International Max Planck Research School Scholarship for the 5-year MSc/PhD program. \hfill {\em Oct. 2023 -- Present}
+    \item ICTP Fully Funded Scholarship for LACONEU Summer School. \hfill {\em Jan. 2023}
+    \item Full Tuition and Fees Scholarship, Zewail University. \hfill {\em Sept. 2017 -- Jun. 2022}
+    \item Provost's Honor Roll, Cum Laude.
+    \item Recognition for Service to Zewail City Community.
+\end{itemize}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	RELEVANT COURSES
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Relevant Courses}
+\begin{itemize}
+    \item Theoretical Neuroscience, Nonlinear Control, Neurophysiology
+    \item Deep Learning, Differential Geometry, Systems Biology
+    \item Linear/Nonlinear Programming, Biological Physics, Data Structures \& Algorithms
+\end{itemize}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	SKILLS
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Skills}
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+Programming: & Python, C/C++, MATLAB \\
+ML \& Data Science: & PyTorch, TensorFlow, Scikit-learn, NumPy, Pandas \\
+Methods: & POMDPs, Bayesian inference, dynamical systems, control theory \\
+Software \& Tools: & Simulink, SOLIDWORKS, Cytoscape, PyMOL \\
+Languages: & Arabic (Native), English (Fluent), German (Intermediate) \\
+Hobbies: & Tennis, Hiking, Running, Calisthenics
+\end{tabular}
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	EXTRACURRICULAR
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Extra-Curricular Activities}
+{\bf TEDx UST Zewail City, Head of Public Relations} \hfill {\em 2018 -- 2019}
+\begin{itemize}
+    \item Led and trained PR and fundraising teams; coordinated speaker outreach and event logistics.
+\end{itemize}
+
+{\bf IEEE Zewail City, Head of PR and Fundraising} \hfill {\em 2017 -- 2018}
+\begin{itemize}
+    \item Managed a 12-member PR team; raised 300,000 EGP to support events with 400+ attendees.
+\end{itemize}
+
+{\bf Egyptian Diplomatic Project, HR Development Committee Member} \hfill {\em 2016 -- 2017}
+\begin{itemize}
+    \item Conducted interviews, performance appraisals, and participant support for 300+ individuals.
+\end{itemize}
+\end{rSection}
+
+\end{document}
